@@ -1,0 +1,15 @@
+{
+    "customerID" : "12345",
+    "productCode" : "abcde",
+    "customer" : {
+        "firstName" : "Foo",
+        "lastName" : "Bar",
+        "address" : {
+            "line1" : "2121 N First St",
+            "line2" : "Site 45",
+            "city" : "Campbell",
+            "state" : "CA",
+            "zipCode" : 95008
+        }
+    }
+}

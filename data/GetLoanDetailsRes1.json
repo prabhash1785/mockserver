@@ -1,0 +1,8 @@
+{
+    "customerID" : "12345",
+    "productCode" : "abcde",
+    "loan" : {
+        "loanAmount" : 500,
+        "loanCurrency" : "USD"
+    }
+}

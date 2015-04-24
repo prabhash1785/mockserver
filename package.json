@@ -1,0 +1,19 @@
+{
+  "name": "mockserver",
+  "version": "0.0.1",
+  "description": "General purpose Mock Server to quickly mock any kind of Web Service.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.paypal.com/prrathore/mockserver.git"
+  },
+  "keywords": [
+    "mock",
+    "mock server"
+  ],
+  "author": "Prabhash Rathore",
+  "license": "PayPal"
+}

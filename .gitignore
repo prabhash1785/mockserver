@@ -1,0 +1,35 @@
+# Project Specifics #
+#####################
+.project
+.settings/*
+.build
+.idea
+.idea/*
+.lastFullBuild
+node_modules
+npm-debug.log
+logs
+coverage
+test/functional/report/*
+tmp
+
+# Few other standard git ignore directories and file extensions #
+#################################################################
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+results
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
