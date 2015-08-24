@@ -1,7 +1,7 @@
 {
-  "name": "mockserver",
+  "name": "mockapi",
   "version": "0.0.1",
-  "description": "General purpose Mock Server to quickly mock any kind of Web Service.",
+  "description": "Simple configuration based Mock server to quickly mock any kind of backedne API.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
