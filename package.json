@@ -1,7 +1,7 @@
 {
   "name": "mockapi",
   "version": "0.0.1",
-  "description": "Simple configuration based Mock server to quickly mock any kind of backedne API.",
+  "description": "Simple configuration based Mock server to quickly mock any kind of backend API.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +12,9 @@
   },
   "keywords": [
     "mock",
-    "mock server"
+    "mock server",
+    "mock API"
   ],
   "author": "Prabhash Rathore",
-  "license": "PayPal"
+  "license": ""
 }
