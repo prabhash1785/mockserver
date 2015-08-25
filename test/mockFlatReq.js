@@ -11,7 +11,7 @@ var assert = require('assert');
 var mockServer = require('../lib/MockServer');
 
 
-describe('Flat requests', function() {
+describe('Flat requests mock', function() {
 
     describe('successful mock response', function() {
 
