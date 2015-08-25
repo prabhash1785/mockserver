@@ -15,7 +15,7 @@ module.exports = function (grunt) {
                 jshintrc: '.jshintrc'
             }
         },
-        mochaTest: {
+        mochacli: {
             src: ['test/*.js'],
             options: {
                 timeout: 6000,
@@ -29,7 +29,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-cli');
 
-    grunt.registerTask('test', ['jshint', 'mochaTest']);
+    grunt.registerTask('test', ['jshint', 'mochacli']);
     grunt.registerTask('lint', ['jshint']);
 
 };
