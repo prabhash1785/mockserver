@@ -1,6 +1,18 @@
 {
     "api" : [
         {
+            "serviceName" : "userDataService",
+            "apiName" : "getUserData",
+            "request" : {
+                "accountNumber" : "12345",
+                "city" : "Campbell",
+                "country" : "US",
+                "zipCode" : 95008
+            },
+            "response" : "GetAccountDetailsRes1.json",
+            "error" : "Error.json"
+        },
+        {
             "serviceName" : "userlifecycleserv",
             "apiName" : "getAccountDetails",
             "request" : {
