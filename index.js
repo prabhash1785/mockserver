@@ -7,5 +7,6 @@
 var mockServer = require('./lib/MockServer');
 
 module.exports = {
-    getMockData: mockServer.getMockData
+    getMockData: mockServer.getMockData,
+    getMockDataForNestedReq: mockServer.getMockDataForNestedReq
 };

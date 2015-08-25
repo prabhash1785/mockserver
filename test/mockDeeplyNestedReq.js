@@ -6,62 +6,40 @@
 
 var mockServer = require('../lib/MockServer');
 
-var apiContext = {
+var apiContext1 = {
     serviceName : "userlifecycleserv",
     apiName : "getAccountDetails"
 };
-var request = {
+
+var flatrequest = {
     "accountNumber" : "12345",
     "city" : "Campbell",
     "country" : "US",
     "zipCode" : 95008
 }
-var res = mockServer.getMockDataForNestedReq(apiContext, request);
-console.log("Here is Mock Response: " + JSON.stringify(res, null, 4));
 
+//var res = mockServer.getMockDataForNestedReq(apiContext1, flatrequest);
+//console.log("Here is Mock Response: " + JSON.stringify(res, null, 4));
 
-function getResponseFromMockServer(req) {
+// nested req obj
+var apiContext2 = {
+    serviceName : "nestedobjectserv",
+    apiName : "getNestedObject"
+};
 
-    if(req === undefined) {
-        throw "Undefined Request";
-    }
+var nestedReq = {
+    "customerID" : "83467",
+    "productCode" : "lfgns",
+    "subjects" : ["English", "Math"],
+    "address" : {
+        "street" : "2121 N 1st St",
+        "city" : "San Jose"
+    },
+    "pastCountries" : [
+        "India",
+        "US"
+    ]
+};
 
-    //Move these require statements outside of this function later
-    var deepComparator = require('./DeepComparator');
-
-    var flattenedReq = deepComparator.flattenObject(req, []);
-
-    var flattenRulesData = deepComparator.flattenObject(rules, []);
-
-    console.log("Flattened Request:");
-    for(var i = 0; i < flattenedReq.length; i++) {
-        console.log(flattenedReq[i].key + " :: " + flattenedReq[i].value);
-    }
-
-    console.log("Flattened Rules Data:");
-    for(var i = 0; i < flattenRulesData.length; i++) {
-        console.log(flattenRulesData[i].key + " :: " + flattenRulesData[i].value);
-    }
-
-
-}
-
-//Move it to test file later
-//getResponseFromMockServer({
-//    location: ['India', 'US'],
-//    name : {
-//        firstName : 'Ricky',
-//        lastName : "Rathore",
-//        parents : {
-//            father : {
-//                a : 'a',
-//                b : 'b'
-//            },
-//            mother : "Emmy"
-//        }
-//    },
-//    age : 29,
-//    city : 'San Jose',
-//    state : 'CA',
-//    country : 'US'
-//});
+var nestedMockRes = mockServer.getMockDataForNestedReq(apiContext2, nestedReq);
+console.log(JSON.stringify(nestedMockRes, null, 4));

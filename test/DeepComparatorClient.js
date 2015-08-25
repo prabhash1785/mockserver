@@ -4,6 +4,8 @@
  * Created by prrathore on 1/7/15.
  */
 
+'use strict';
+
 var deepComparator = require('../lib/DeepComparator');
 
 var nestedObj1 = {

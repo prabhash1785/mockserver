@@ -4,6 +4,8 @@
  * Created by Prabhash Rathore on 1/7/15.
  */
 
+'use strict';
+
 var assert = require('assert');
 var mockServer = require('../lib/MockServer');
 
