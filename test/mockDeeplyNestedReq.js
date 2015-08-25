@@ -16,7 +16,7 @@ var flatrequest = {
     "city" : "Campbell",
     "country" : "US",
     "zipCode" : 95008
-}
+};
 
 //var res = mockServer.getMockDataForNestedReq(apiContext1, flatrequest);
 //console.log("Here is Mock Response: " + JSON.stringify(res, null, 4));

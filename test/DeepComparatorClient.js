@@ -25,7 +25,7 @@ var nestedObj1 = {
     city : 'San Jose',
     state : 'CA',
     country : 'US'
-}
+};
 
 var nestedObj2 = {
     name : {
@@ -43,7 +43,7 @@ var nestedObj2 = {
     city : 'San Jose',
     state : 'CA',
     country : 'US'
-}
+};
 
 var nestedObj3 = {
     location: ['India', 'US'],
@@ -62,7 +62,7 @@ var nestedObj3 = {
     city : 'San Jose',
     state : 'CA',
     country : 'US'
-}
+};
 
 var list1 = deepComparator.flattenObject(nestedObj1, []);
 
