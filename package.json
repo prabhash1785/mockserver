@@ -16,5 +16,10 @@
     "mock API"
   ],
   "author": "Prabhash Rathore",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-mocha-cli": "^1.14.0"
+  }
 }
