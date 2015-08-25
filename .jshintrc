@@ -55,5 +55,6 @@
   "sub": false,
   "trailing": false,
   "white": false,
-  "indent": 4
+  "indent": 4,
+  "mocha": true
 }
