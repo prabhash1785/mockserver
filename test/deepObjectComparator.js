@@ -1,87 +1,92 @@
 /**
- * Sample client code to test Object Deep Comparator.
+ * Unit test for Deep Object Comparator.
  *
- * Created by prrathore on 1/7/15.
+ * Created by prrathore on 8/26/15.
  */
 
 'use strict';
 
+var assert = require('assert');
 var deepComparator = require('../lib/DeepComparator');
 
-var nestedObj1 = {
-    location: ['India', 'US'],
-    name : {
-        firstName : 'Ricky',
-        lastName : "Rathore",
-        parents : {
-            father : {
-                a : 'a',
-                b : 'b'
-            },
-            mother : "Emmy"
-        }
-    },
-    age : 29,
-    city : 'San Jose',
-    state : 'CA',
-    country : 'US'
-};
+describe('Deep Object comparator', function() {
 
-var nestedObj2 = {
-    name : {
-        firstName : 'Ricky',
-        lastName : "Green-Rathore",
-        parents : {
-            father : {
-                a : 'a',
-                b : 'b'
-            },
-            mother : "Barb"
-        }
-    },
-    age : 29,
-    city : 'San Jose',
-    state : 'CA',
-    country : 'US'
-};
+    describe('deep object comparison', function() {
 
-var nestedObj3 = {
-    location: ['India', 'US'],
-    name : {
-        firstName : 'Ricky',
-        lastName : "Rathore",
-        parents : {
-            father : {
-                a : 'a',
-                b : 'b'
-            },
-            mother : "Emmy"
-        }
-    },
-    age : 29,
-    city : 'San Jose',
-    state : 'CA',
-    country : 'US'
-};
+        it('should compare two deep objects successfully', function() {
 
-var list1 = deepComparator.flattenObject(nestedObj1, []);
+            var nestedObj1 = {
+                location: ['India', 'US'],
+                name : {
+                    firstName : 'Ricky',
+                    lastName : "Travolta",
+                    parents : {
+                        father : {
+                            a : 'a',
+                            b : 'b'
+                        },
+                        mother : "Emmy"
+                    }
+                },
+                age : 29,
+                city : 'San Jose',
+                state : 'CA',
+                country : 'US'
+            };
 
-console.log("\n\n\First Flattened object:");
-for(var i = 0; i < list1.length; i++) {
-    console.log(list1[i].key + " :: " + list1[i].value);
-}
+            var nestedObj2 = {
+                location: ['India', 'US'],
+                name : {
+                    firstName : 'Ricky',
+                    lastName : "Travolta",
+                    parents : {
+                        father : {
+                            a : 'a',
+                            b : 'b'
+                        },
+                        mother : "Emmy"
+                    }
+                },
+                age : 29,
+                city : 'San Jose',
+                state : 'CA',
+                country : 'US'
+            };
 
-var list2 = deepComparator.flattenObject(nestedObj3, []);
+            var list1 = deepComparator.flattenObject(nestedObj1, []);
+            var list2 = deepComparator.flattenObject(nestedObj2, []);
 
-console.log("\n\n\Second flattened object:");
-for(var i = 0; i < list2.length; i++) {
-    console.log(list2[i].key + " :: " + list2[i].value);
-}
+            assert(deepComparator.compareFlattenedArray(list1, list2), true);
 
-var equalityCheck = deepComparator.compareFlattenedArray(list1, list2);
+        });
 
-if(equalityCheck) {
-    console.log("Objects are Deep Equal!!");
-} else {
-    console.log("Objects are not Deep Equal!!");
-}
+    });
+
+    describe('flat object comparison', function() {
+
+        it('should compare two flat objects successfully', function () {
+
+            var obj1 = {
+                accountNumber: '12345',
+                city: 'Campbell',
+                country: 'US',
+                zipCode: 95008
+            };
+
+            var obj2 = {
+                accountNumber: '12345',
+                city: 'Campbell',
+                country: 'US',
+                zipCode: 95008
+            };
+
+            var list1 = deepComparator.flattenObject(obj1, []);
+            var list2 = deepComparator.flattenObject(obj2, []);
+
+            assert(deepComparator.compareFlattenedArray(list1, list2), true);
+
+        });
+
+    });
+
+});
