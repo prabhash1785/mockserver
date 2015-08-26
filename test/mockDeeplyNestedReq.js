@@ -143,7 +143,7 @@ describe('Deeply nested requests map', function() {
 
     describe('input validations', function() {
 
-        it('should throw exception if apiContext is missing', function() {
+        it('should throw exception for invalid parameters', function() {
 
             var apiContext = {
                 serviceName: 'addressService',

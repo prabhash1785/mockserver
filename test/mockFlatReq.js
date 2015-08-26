@@ -67,6 +67,48 @@ describe('Flat requests mock', function() {
 
     });
 
+    describe('input validations', function() {
+
+        it('should throw exception for invalid parameters', function() {
+
+            var apiContext = {
+                serviceName: 'addressService',
+                apiName: 'getAddress'
+            };
+
+            var req = {
+                accountNumber : '12345',
+                city : 'Campbell',
+                country : 'US',
+                zipCode : 95008
+            };
+
+            assert.throws(function() {
+                mockServer.getMockData(undefined, req);
+            }, /Missing API context. Need a valid service context like api name, api method to get mock data/);
+
+            assert.throws(function() {
+                mockServer.getMockData(function() {
+                    return {};
+                }, req);
+            }, /Function is not accepted as request parameter/);
+
+            assert.throws(function() {
+                mockServer.getMockData({}, req);
+            }, Error);
+
+            assert.throws(function() {
+                mockServer.getMockData({}, req);
+            }, /Service Name is required to get Mock Data./);
+
+            assert.throws(function() {
+                mockServer.getMockData(apiContext, undefined);
+            }, /Undefined Request/);
+
+        });
+
+    });
+
 });
 
 
