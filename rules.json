@@ -25,6 +25,19 @@
             "error" : "Error.json"
         },
         {
+            "serviceName" : "someRESTfulService",
+            "apiName" : "accountPreferences",
+            "request" : {
+                "accountNumber" : "734567",
+                "location": {
+                    "state": "CA",
+                    "country": "US"
+                }
+            },
+            "response" : "accountPreferences.json",
+            "error" : "Error.json"
+        },
+        {
             "serviceName" : "merchantcashadvanceserv",
             "apiName" : "getLoanDetails",
             "request" : {

@@ -47,7 +47,7 @@ describe('Deeply nested requests map', function() {
 
     describe('successful mock response for flat request', function() {
 
-        it('should get successful mock response for nested request', function() {
+        it('should get successful mock response for flat request', function() {
 
             var apiContext = {
                 serviceName: 'userDataService',
@@ -72,6 +72,70 @@ describe('Deeply nested requests map', function() {
             assert.equal(response.customer.address.city, 'Campbell');
             assert.equal(response.customer.address.state, 'CA');
             assert.equal(response.customer.address.zipCode, 95008);
+
+        });
+
+    });
+
+    describe('RESTful webservice style response', function() {
+
+        it('should get successful mock REST style response for nested request', function() {
+
+            var apiContext = {
+                serviceName: 'someRESTfulService',
+                apiName: 'accountPreferences'
+            };
+
+            var req = {
+                accountNumber : '734567',
+                location: {
+                    state: 'CA',
+                    country: 'US'
+                }
+            };
+
+            var response = mockServer.getMockDataForNestedReq(apiContext, req);
+
+            assert.equal(response.statusCode, 200);
+            assert.equal(response.preferences.id, 'ab67ws8');
+            assert.equal(response.preferences.accountNumber, '734567');
+            assert.equal(response.preferences.paymentMethod, 'Card');
+            assert.equal(response.preferences.contactMethod, 'email');
+            assert.equal(response.preferences.customer.firstName, 'Iron');
+            assert.equal(response.preferences.customer.lastName, 'Man');
+            assert.equal(response.preferences.customer.address.line1, '2121 N First St');
+            assert.equal(response.preferences.customer.address.line2, 'Site 45');
+            assert.equal(response.preferences.customer.address.city, 'Campbell');
+            assert.equal(response.preferences.customer.address.state, 'CA');
+            assert.equal(response.preferences.customer.address.zipCode, 95008);
+
+            //assert HATEOAS links
+            assert.equal(response.preferences.links[0].rel, 'self');
+            assert.equal(response.preferences.links[0].href, 'https://somerandomcompany.com/accountPreferences');
+            assert.equal(response.preferences.links[1].rel, 'next');
+            assert.equal(response.preferences.links[1].href, 'https://somerandomcompany.com/accountPreference?pageID=2');
+
+        });
+
+    });
+
+    describe('404 Error or no matching request', function() {
+
+        it('should return 404 error', function() {
+
+            var apiContext = {
+                serviceName: 'addressService',
+                apiName: 'getAddress'
+            };
+
+            var req = {
+                accountNumber : '5674876'
+            };
+
+            var response = mockServer.getMockDataForNestedReq(apiContext, req);
+
+            assert.equal(response.errorCode, 404);
+            assert.equal(response.errorMessage, 'Invalid Request, no matching response found!');
 
         });
 
