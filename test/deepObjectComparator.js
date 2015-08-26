@@ -89,4 +89,12 @@ describe('Deep Object comparator', function() {
 
     });
 
+    /**
+     * TODO:
+     * - compare array types
+     * - bad data with a function
+     * - two differnet objects should fail
+     * - check exception conditions
+     */
+
 });
