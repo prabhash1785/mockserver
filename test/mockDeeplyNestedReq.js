@@ -141,4 +141,46 @@ describe('Deeply nested requests map', function() {
 
     });
 
+    describe('input validations', function() {
+
+        it('should throw exception if apiContext is missing', function() {
+
+            var apiContext = {
+                serviceName: 'addressService',
+                apiName: 'getAddress'
+            };
+
+            var req = {
+                accountNumber : '12345',
+                city : 'Campbell',
+                country : 'US',
+                zipCode : 95008
+            };
+
+            assert.throws(function() {
+                mockServer.getMockDataForNestedReq(undefined, req);
+            }, /Undefined API Context/);
+
+            assert.throws(function() {
+                mockServer.getMockDataForNestedReq(function() {
+                    return {};
+                }, req);
+            }, /Function is not accepted as request parameter/);
+
+            assert.throws(function() {
+                mockServer.getMockDataForNestedReq({}, req);
+            }, Error);
+
+            assert.throws(function() {
+                mockServer.getMockDataForNestedReq({}, req);
+            }, /Service Name is required to get Mock Data./);
+
+            assert.throws(function() {
+                mockServer.getMockDataForNestedReq(apiContext, undefined);
+            }, /Undefined Request/);
+
+        });
+
+    });
+
 });
