@@ -56,7 +56,7 @@ describe('Deep Object comparator', function() {
             var list1 = deepComparator.flattenObject(nestedObj1, []);
             var list2 = deepComparator.flattenObject(nestedObj2, []);
 
-            assert(deepComparator.compareFlattenedArray(list1, list2), true);
+            assert.equal(deepComparator.compareFlattenedArray(list1, list2), true);
 
         });
 
@@ -64,7 +64,7 @@ describe('Deep Object comparator', function() {
 
     describe('flat object comparison', function() {
 
-        it('should compare two flat objects successfully', function () {
+        it('should compare two flat objects successfully', function() {
 
             var obj1 = {
                 accountNumber: '12345',
@@ -83,15 +83,162 @@ describe('Deep Object comparator', function() {
             var list1 = deepComparator.flattenObject(obj1, []);
             var list2 = deepComparator.flattenObject(obj2, []);
 
-            assert(deepComparator.compareFlattenedArray(list1, list2), true);
+            assert.equal(deepComparator.compareFlattenedArray(list1, list2), true);
 
         });
 
     });
 
+    describe('Simple Array comparison', function() {
+
+        it('should compare two simple arrays successfully', function() {
+
+           var list1 = [
+               'hello',
+               'world'
+           ];
+
+            var list2 = [
+                'hello',
+                'world'
+            ];
+
+            var flattenedList1 = deepComparator.flattenObject(list1, []);
+            var flattenedList2 = deepComparator.flattenObject(list2, []);
+
+            assert.equal(deepComparator.compareFlattenedArray(flattenedList1, flattenedList2), true);
+
+        });
+
+    });
+
+    describe('Array with nested objects comparison', function() {
+
+        it('should compare two arrays with nested objects successfully', function() {
+
+            var nestedArray1 = [
+                'US',
+                'India',
+                {
+                    location: ['India', 'US'],
+                    name : {
+                        firstName : 'Ricky',
+                        lastName : "Travolta",
+                        parents : {
+                            father : {
+                                a : 'a',
+                                b : 'b'
+                            },
+                            mother : "Emmy"
+                        }
+                    },
+                    age : 29,
+                    city : 'San Jose',
+                    state : 'CA',
+                    country : 'US'
+                },
+                ['hello', 'world'],
+                {
+                    card: {
+                        'network': 'Discover',
+                        'cvv': '111'
+                    }
+                }
+            ];
+
+            var nestedArray2 = [
+                'US',
+                'India',
+                {
+                    location: ['India', 'US'],
+                    name : {
+                        firstName : 'Ricky',
+                        lastName : "Travolta",
+                        parents : {
+                            father : {
+                                a : 'a',
+                                b : 'b'
+                            },
+                            mother : "Emmy"
+                        }
+                    },
+                    age : 29,
+                    city : 'San Jose',
+                    state : 'CA',
+                    country : 'US'
+                },
+                ['hello', 'world'],
+                {
+                    card: {
+                        'network': 'Discover',
+                        'cvv': '111'
+                    }
+                }
+            ];
+
+            var flattenedList1 = deepComparator.flattenObject(nestedArray1, []);
+            var flattenedList2 = deepComparator.flattenObject(nestedArray2, []);
+
+            assert.equal(deepComparator.compareFlattenedArray(flattenedList1, flattenedList2), true);
+
+        });
+
+    });
+
+    describe('Unequal objects comparison', function() {
+
+        it('should return false while comparing unequal objects', function() {
+
+            var nestedObj1 = {
+                location: ['India', 'US'],
+                name : {
+                    firstName : 'Ricky',
+                    lastName : "Travolta",
+                    parents : {
+                        father : {
+                            a : 'a',
+                            b : 'b'
+                        },
+                        mother : "Emmy"
+                    }
+                },
+                city : 'San Jose',
+                state : 'CA',
+                country : 'US'
+            };
+
+            var nestedObj2 = {
+                location: ['India', 'US'],
+                name : {
+                    firstName : 'Ricky',
+                    lastName : "Travolta",
+                    parents : {
+                        father : {
+                            a : 'a',
+                            b : 'b'
+                        },
+                        mother : "Emmy"
+                    }
+                },
+                age : 29,
+                city : 'San Jose',
+                state : 'CA',
+                country : 'US'
+            };
+
+            var flattenedObj1 = deepComparator.flattenObject(nestedObj1, []);
+            var flattenedObj2 = deepComparator.flattenObject(nestedObj2, []);
+
+            assert.equal(deepComparator.compareFlattenedArray(flattenedObj1, flattenedObj2), false);
+
+        });
+
+    });
+
+    //TODO: fix deep comparator equality
+
     /**
      * TODO:
-     * - compare array types
      * - bad data with a function
      * - two differnet objects should fail
      * - check exception conditions
