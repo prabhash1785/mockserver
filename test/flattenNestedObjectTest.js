@@ -34,7 +34,7 @@ describe('Flatten object', function() {
                country : 'US'
            };
 
-           var flattenedArray = deepComparator.flattenObject(nestedObj1, []);
+           var flattenedArray = deepComparator.flattenObject(nestedObj1);
 
            var expectedOutput = [
                { key: 'location.0', value: 'India' },
@@ -75,7 +75,7 @@ describe('Flatten object', function() {
                 country : 'US'
             };
 
-            var flattenedArray = deepComparator.flattenObject(nestedObj1, []);
+            var flattenedArray = deepComparator.flattenObject(nestedObj1);
 
             var expectedOutput = [
                 { value: 'Paul', key: 'firstName' },
@@ -110,7 +110,7 @@ describe('Flatten object', function() {
                 'US'
             ];
 
-            var flattenedArray = deepComparator.flattenObject(nestedObj1, []);
+            var flattenedArray = deepComparator.flattenObject(nestedObj1);
 
             var expectedOutput = [
                 { value: 'Vin', key: '0' },
@@ -136,32 +136,13 @@ describe('Flatten object', function() {
 
         it('should throw error when bad input is provided', function() {
 
-            var nestedObj1 = [
-                'Vin',
-                'Diesel',
-                35,
-                'San Jose',
-                'CA',
-                'US'
-            ];
+            assert.throws(function() {
+                deepComparator.flattenObject(undefined);
+            }, /Undefined object encountered/);
 
-            var flattenedArray = deepComparator.flattenObject(nestedObj1, []);
-
-            var expectedOutput = [
-                { value: 'Vin', key: '0' },
-                { value: 'Diesel', key: '1' },
-                { value: 35, key: '2' },
-                { value: 'San Jose', key: '3' },
-                { value: 'CA', key: '4' },
-                { value: 'US', key: '5' }
-            ];
-
-            for(var i = 0; i < expectedOutput.length; i++) {
-
-                assert.equal(flattenedArray[i].key, expectedOutput[i].key, true);
-                assert.equal(flattenedArray[i].value, expectedOutput[i].value, true);
-
-            }
+            assert.throws(function() {
+                deepComparator.flattenObject(null);
+            }, /Undefined object encountered/);
 
         });
 
