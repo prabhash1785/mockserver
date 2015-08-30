@@ -489,11 +489,4 @@ describe('Deep Object comparator', function() {
 
     });
 
-    /**
-     * TODO:
-     * - bad data with a function
-     * - two differnet objects should fail
-     * - check exception conditions
-     */
-
 });
