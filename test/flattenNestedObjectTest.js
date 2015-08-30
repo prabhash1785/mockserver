@@ -132,6 +132,19 @@ describe('Flatten object', function() {
 
     });
 
+    describe('behavior for empty object', function() {
+
+        it('should return empty array for empty object', function() {
+
+            var emptyList = deepComparator.flattenObject({});
+
+            assert(typeof emptyList, 'array', true);
+            assert.equal(emptyList.length, 0, true);
+
+        });
+
+    });
+
     describe('behavior for bad inputs', function() {
 
         it('should throw error when bad input is provided', function() {
@@ -143,6 +156,16 @@ describe('Flatten object', function() {
             assert.throws(function() {
                 deepComparator.flattenObject(null);
             }, /Undefined object encountered/);
+
+            assert.throws(function() {
+                deepComparator.flattenObject('some string');
+            }, /Only object types are permitted for this function/);
+
+            assert.throws(function() {
+                deepComparator.flattenObject(function() {
+                    return 'some crap';
+                });
+            }, /Only object types are permitted for this function/);
 
         });
 
