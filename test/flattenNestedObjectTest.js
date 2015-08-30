@@ -19,7 +19,7 @@ describe('Flatten object', function() {
                location: ['India', 'US'],
                name : {
                    firstName : 'Paul',
-                   lastName : "Walker",
+                   lastName : 'Walker',
                    parents : {
                        father : {
                            a : 'a',
@@ -59,6 +59,111 @@ describe('Flatten object', function() {
            }
 
        });
+
+    });
+
+    describe('flatten non-nested object', function() {
+
+        it('should flatten non-nested object', function() {
+
+            var nestedObj1 = {
+                firstName : 'Paul',
+                lastName : 'Walker',
+                age : 35,
+                city : 'San Jose',
+                state : 'CA',
+                country : 'US'
+            };
+
+            var flattenedArray = deepComparator.flattenObject(nestedObj1, []);
+
+            var expectedOutput = [
+                { value: 'Paul', key: 'firstName' },
+                { value: 'Walker', key: 'lastName' },
+                { value: 35, key: 'age' },
+                { value: 'San Jose', key: 'city' },
+                { value: 'CA', key: 'state' },
+                { value: 'US', key: 'country' }
+            ];
+
+            for(var i = 0; i < expectedOutput.length; i++) {
+
+                assert.equal(flattenedArray[i].key, expectedOutput[i].key, true);
+                assert.equal(flattenedArray[i].value, expectedOutput[i].value, true);
+
+            }
+
+        });
+
+    });
+
+    describe('flatten array object', function() {
+
+        it('should flatten array object', function() {
+
+            var nestedObj1 = [
+                'Vin',
+                'Diesel',
+                35,
+                'San Jose',
+                'CA',
+                'US'
+            ];
+
+            var flattenedArray = deepComparator.flattenObject(nestedObj1, []);
+
+            var expectedOutput = [
+                { value: 'Vin', key: '0' },
+                { value: 'Diesel', key: '1' },
+                { value: 35, key: '2' },
+                { value: 'San Jose', key: '3' },
+                { value: 'CA', key: '4' },
+                { value: 'US', key: '5' }
+            ];
+
+            for(var i = 0; i < expectedOutput.length; i++) {
+
+                assert.equal(flattenedArray[i].key, expectedOutput[i].key, true);
+                assert.equal(flattenedArray[i].value, expectedOutput[i].value, true);
+
+            }
+
+        });
+
+    });
+
+    describe('behavior for bad inputs', function() {
+
+        it('should throw error when bad input is provided', function() {
+
+            var nestedObj1 = [
+                'Vin',
+                'Diesel',
+                35,
+                'San Jose',
+                'CA',
+                'US'
+            ];
+
+            var flattenedArray = deepComparator.flattenObject(nestedObj1, []);
+
+            var expectedOutput = [
+                { value: 'Vin', key: '0' },
+                { value: 'Diesel', key: '1' },
+                { value: 35, key: '2' },
+                { value: 'San Jose', key: '3' },
+                { value: 'CA', key: '4' },
+                { value: 'US', key: '5' }
+            ];
+
+            for(var i = 0; i < expectedOutput.length; i++) {
+
+                assert.equal(flattenedArray[i].key, expectedOutput[i].key, true);
+                assert.equal(flattenedArray[i].value, expectedOutput[i].value, true);
+
+            }
+
+        });
 
     });
 
