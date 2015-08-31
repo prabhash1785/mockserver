@@ -25,7 +25,7 @@ describe('Flatten object', function() {
                            a : 'a',
                            b : 'b'
                        },
-                       mother : "Emmy"
+                       mother : 'Emmy'
                    }
                },
                age : 35,

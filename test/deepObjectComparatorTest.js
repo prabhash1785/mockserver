@@ -19,13 +19,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
@@ -38,13 +38,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
@@ -66,9 +66,9 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
-                        mother : "Emmy",
+                        mother : 'Emmy',
                         father : {
                             a : 'a',
                             b : 'b'
@@ -84,13 +84,13 @@ describe('Deep Object comparator', function() {
             var nestedObj2 = {
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
@@ -170,13 +170,13 @@ describe('Deep Object comparator', function() {
                     location: ['India', 'US'],
                     name : {
                         firstName : 'Ricky',
-                        lastName : "Travolta",
+                        lastName : 'Travolta',
                         parents : {
                             father : {
                                 a : 'a',
                                 b : 'b'
                             },
-                            mother : "Emmy"
+                            mother : 'Emmy'
                         }
                     },
                     age : 29,
@@ -200,13 +200,13 @@ describe('Deep Object comparator', function() {
                     location: ['India', 'US'],
                     name : {
                         firstName : 'Ricky',
-                        lastName : "Travolta",
+                        lastName : 'Travolta',
                         parents : {
                             father : {
                                 a : 'a',
                                 b : 'b'
                             },
-                            mother : "Emmy"
+                            mother : 'Emmy'
                         }
                     },
                     age : 29,
@@ -240,13 +240,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 city : 'San Jose',
@@ -258,13 +258,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
@@ -287,13 +287,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
@@ -306,13 +306,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 state : 'CA',
@@ -333,13 +333,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 city : 'San Jose',
@@ -351,60 +351,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
-                    }
-                },
-                age : 29,
-                state : 'CA',
-                country : 'US',
-                city : 'San Jose'
-            };
-
-            var flattenedObj1 = deepComparator.flattenObject(nestedObj1);
-            var flattenedObj2 = deepComparator.flattenObject(nestedObj2);
-
-            assert.equal(deepComparator.compareFlattenedArray(flattenedObj1, flattenedObj2), false);
-            assert.equal(deepComparator.compareFlattenedArray(flattenedObj2, flattenedObj1), false);
-
-        });
-
-        it('should return false while comparing unequal objects', function() {
-
-            var nestedObj1 = {
-                location: ['India', 'US'],
-                name : {
-                    firstName : 'Ricky',
-                    lastName : "Travolta",
-                    parents : {
-                        father : {
-                            a : 'a',
-                            b : 'b'
-                        },
-                        mother : "Emmy"
-                    }
-                },
-                city : 'San Jose',
-                state : 'CA',
-                country : 'US'
-            };
-
-            var nestedObj2 = {
-                location: ['India', 'US'],
-                name : {
-                    firstName : 'Ricky',
-                    lastName : "Travolta",
-                    parents : {
-                        father : {
-                            a : 'a',
-                            b : 'b'
-                        },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
@@ -427,13 +380,60 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
+                    parents : {
+                        father : {
+                            a : 'a',
+                            b : 'b'
+                        },
+                        mother : 'Emmy'
+                    }
+                },
+                city : 'San Jose',
+                state : 'CA',
+                country : 'US'
+            };
+
+            var nestedObj2 = {
+                location: ['India', 'US'],
+                name : {
+                    firstName : 'Ricky',
+                    lastName : 'Travolta',
+                    parents : {
+                        father : {
+                            a : 'a',
+                            b : 'b'
+                        },
+                        mother : 'Emmy'
+                    }
+                },
+                age : 29,
+                state : 'CA',
+                country : 'US',
+                city : 'San Jose'
+            };
+
+            var flattenedObj1 = deepComparator.flattenObject(nestedObj1);
+            var flattenedObj2 = deepComparator.flattenObject(nestedObj2);
+
+            assert.equal(deepComparator.compareFlattenedArray(flattenedObj1, flattenedObj2), false);
+            assert.equal(deepComparator.compareFlattenedArray(flattenedObj2, flattenedObj1), false);
+
+        });
+
+        it('should return false while comparing unequal objects', function() {
+
+            var nestedObj1 = {
+                location: ['India', 'US'],
+                name : {
+                    firstName : 'Ricky',
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'foo',
                             b : 'bar'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
@@ -446,13 +446,13 @@ describe('Deep Object comparator', function() {
                 location: ['India', 'US'],
                 name : {
                     firstName : 'Ricky',
-                    lastName : "Travolta",
+                    lastName : 'Travolta',
                     parents : {
                         father : {
                             a : 'a',
                             b : 'b'
                         },
-                        mother : "Emmy"
+                        mother : 'Emmy'
                     }
                 },
                 age : 29,
