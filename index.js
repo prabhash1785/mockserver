@@ -4,7 +4,7 @@
 
 'use strict';
 
-var mockServer = require('./lib/MockServer');
+var mockServer = require('./lib/mockServer');
 
 module.exports = {
     getMockData: mockServer.getMockData,

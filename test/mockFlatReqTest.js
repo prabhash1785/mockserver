@@ -8,7 +8,7 @@
 
 var assert = require('assert');
 
-var mockServer = require('../lib/MockServer');
+var mockServer = require('../lib/mockServer');
 
 
 describe('Flat requests mock', function() {

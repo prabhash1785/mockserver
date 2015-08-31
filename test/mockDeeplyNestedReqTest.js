@@ -7,7 +7,7 @@
 'use strict';
 
 var assert = require('assert');
-var mockServer = require('../lib/MockServer');
+var mockServer = require('../lib/mockServer');
 
 describe('Deeply nested requests map', function() {
 

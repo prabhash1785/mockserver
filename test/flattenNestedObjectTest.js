@@ -7,7 +7,7 @@
 'use strict';
 
 var assert = require('assert');
-var deepComparator = require('../lib/DeepComparator');
+var deepComparator = require('../lib/deepComparator');
 
 describe('Flatten object', function() {
 
