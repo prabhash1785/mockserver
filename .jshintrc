@@ -56,5 +56,6 @@
   "trailing": false,
   "white": false,
   "indent": 4,
-  "mocha": true
+  "mocha": true,
+  "quotmark": true
 }
