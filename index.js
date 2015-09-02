@@ -22,7 +22,7 @@ function createMockServer(options) {
 }
 
 module.exports = {
-    setupMockServer: createMockServer,
+    configureMockServer: createMockServer,
     getMockData: mockServer.getMockData,
     getMockDataForNestedReq: mockServer.getMockDataForNestedReq
 };
