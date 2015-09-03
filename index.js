@@ -6,23 +6,20 @@
 
 var mockServer = require('./lib/mockServer');
 
+/**
+ * If no options object provided then default path will be used for mock rules and data directories.
+ *
+ * @param options
+ * @return {{getMockData: *, getMockDataForNestedReq: *}}
+ */
+module.exports = function(options) {
 
-function createMockServer(options) {
-
-    var Config = require('./lib/config');
-    var config = new Config();
-
+    var config = require('./lib/config');
     config.setConfig(options);
 
-    var configData1 = config.getConfig();
+    return {
+        getMockData: mockServer.getMockData,
+        getMockDataForNestedReq: mockServer.getMockDataForNestedReq
+    };
 
-    console.log('Rules Path: ' + configData1.rulesPath);
-    console.log('Data Path: ' + configData1.dataPath);
-
-}
-
-module.exports = {
-    configureMockServer: createMockServer,
-    getMockData: mockServer.getMockData,
-    getMockDataForNestedReq: mockServer.getMockDataForNestedReq
 };
