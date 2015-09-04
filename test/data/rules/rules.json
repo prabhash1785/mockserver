@@ -1,0 +1,49 @@
+{
+    "api" : [
+        {
+            "serviceName" : "userDataService",
+            "apiName" : "getUserData",
+            "request" : {
+                "accountNumber" : "12345",
+                "city" : "Campbell",
+                "country" : "US",
+                "zipCode" : 95008
+            },
+            "response" : "getAccountDetailsRes1.json",
+            "error" : "error.json"
+        },
+        {
+            "serviceName" : "someRESTfulService",
+            "apiName" : "accountPreferences",
+            "request" : {
+                "accountNumber" : "734567",
+                "location": {
+                    "state": "CA",
+                    "country": "US"
+                }
+            },
+            "response" : "accountPreferences.json",
+            "error" : "error.json"
+        },
+        {
+            "serviceName" : "nestedobjectserv",
+            "apiName" : "getNestedObject",
+            "request" : {
+                "customerID" : "83467",
+                "productCode" : "lfgns",
+                "subjects" : ["English", "Math"],
+                "address" : {
+                    "street" : "2121 N 1st St",
+                    "city" : "San Jose"
+                },
+                "pastCountries" : [
+                    "India",
+                    "US"
+                ]
+            },
+            "response" : "getLoanDetailsRes1.json",
+            "error" : "error.json"
+        }
+    ]
+
+}
