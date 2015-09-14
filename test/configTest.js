@@ -2,139 +2,87 @@
  * Created by prrathore on 9/4/15.
  */
 
+'use strict';
+
 var assert = require('assert');
-var MockServer = require('../index');
 
 describe('config test', function() {
 
     it('should use default configurations if no custom configuration is provided', function() {
 
-        var mockServer = new MockServer();
+        var config = require('../lib/config');
 
-        var apiContext = {
-            serviceName: 'userDataService',
-            apiName: 'getUserData'
-        };
-
-        var req = {
-            accountNumber : '12345',
-            city : 'Campbell',
-            country : 'US',
-            zipCode : 95008
-        };
-
-        var response = mockServer.getMockData(apiContext, req);
-
-        assert.equal(response.customerID, '12345');
-        assert.equal(response.productCode, 'abcde');
-        assert.equal(response.customer.firstName, 'Foo');
-        assert.equal(response.customer.lastName, 'Bar');
-        assert.equal(response.customer.address.line1, '2121 N First St');
-        assert.equal(response.customer.address.line2, 'Site 45');
-        assert.equal(response.customer.address.city, 'Campbell');
-        assert.equal(response.customer.address.state, 'CA');
-        assert.equal(response.customer.address.zipCode, 95008);
+        assert.equal(config.getConfig().rulesPath, '/rules');
+        assert.equal(config.getConfig().dataPath, '/data');
 
     });
 
     it('should use default configuration if custom configuration is undefined', function() {
 
-        var mockServer = new MockServer(undefined);
+        var config = require('../lib/config');
 
-        var apiContext = {
-            serviceName: 'userDataService',
-            apiName: 'getUserData'
-        };
+        config.setConfig(undefined);
 
-        var req = {
-            accountNumber : '12345',
-            city : 'Campbell',
-            country : 'US',
-            zipCode : 95008
-        };
+        assert.equal(config.getConfig().rulesPath, '/rules');
+        assert.equal(config.getConfig().dataPath, '/data');
 
-        var response = mockServer.getMockData(apiContext, req);
-
-        assert.equal(response.customerID, '12345');
-        assert.equal(response.productCode, 'abcde');
-        assert.equal(response.customer.firstName, 'Foo');
-        assert.equal(response.customer.lastName, 'Bar');
-        assert.equal(response.customer.address.line1, '2121 N First St');
-        assert.equal(response.customer.address.line2, 'Site 45');
-        assert.equal(response.customer.address.city, 'Campbell');
-        assert.equal(response.customer.address.state, 'CA');
-        assert.equal(response.customer.address.zipCode, 95008);
 
     });
 
     it('should use default configuration if custom configuration is null', function() {
 
-        var mockServer = new MockServer(null);
+        var config = require('../lib/config');
 
-        var apiContext = {
-            serviceName: 'userDataService',
-            apiName: 'getUserData'
-        };
+        config.setConfig(null);
 
-        var req = {
-            accountNumber : '12345',
-            city : 'Campbell',
-            country : 'US',
-            zipCode : 95008
-        };
-
-        var response = mockServer.getMockData(apiContext, req);
-
-        assert.equal(response.customerID, '12345');
-        assert.equal(response.productCode, 'abcde');
-        assert.equal(response.customer.firstName, 'Foo');
-        assert.equal(response.customer.lastName, 'Bar');
-        assert.equal(response.customer.address.line1, '2121 N First St');
-        assert.equal(response.customer.address.line2, 'Site 45');
-        assert.equal(response.customer.address.city, 'Campbell');
-        assert.equal(response.customer.address.state, 'CA');
-        assert.equal(response.customer.address.zipCode, 95008);
+        assert.equal(config.getConfig().rulesPath, '/rules');
+        assert.equal(config.getConfig().dataPath, '/data');
 
     });
 
     it('should throw error if custom configuration object is not in right format', function() {
 
+        var config = require('../lib/config');
+
         assert.throws(function() {
-            var mockServer = new MockServer('someConfiguration');
+            config.setConfig('someConfiguration');
         }, Error);
 
         assert.throws(function() {
-            var mockServer = new MockServer('someConfiguration');
+            config.setConfig('someConfiguration');
         }, 'Need rules file path where your have defined mock server rules');
 
     });
 
     it('should throw error if custom configuration object does not have rules file path with right key name', function() {
 
+        var config = require('../lib/config');
+
         assert.throws(function() {
-            var mockServer = new MockServer({
+            config.setConfig({
                 newRulesPath: '../rules',
                 dataPath: '../data'
             });
         }, Error);
 
-        assert.throws(function() {
-            var mockServer = new MockServer('someConfiguration');
-        }, 'Need rules file path where your have defined mock server rules');
-
     });
 
     it('should throw error if custom configuration object does not have data file path with right key name', function() {
 
+        var config = require('../lib/config');
+
         assert.throws(function() {
-            var mockServer = new MockServer({
+            config.setConfig({
                 rulesPath: '../rules',
-                customDataPath: '../data'
+                randomDataPath: '../data'
             });
         }, Error);
 
         assert.throws(function() {
-            var mockServer = new MockServer('someConfiguration');
+            config.setConfig({
+                rulesPath: '../rules',
+                randomDataPath: '../data'
+            });
         }, 'Need data file path where your have copied all your response data');
 
     });
@@ -144,8 +92,8 @@ describe('config test', function() {
         var customConfiguration = {
             rulesPath: './data/rules',
             dataPath: './data/mockResponse'
-        }
-        
+        };
+
         var config = require('../lib/config');
         config.setConfig(customConfiguration);
 
