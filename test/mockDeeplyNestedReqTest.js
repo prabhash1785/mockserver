@@ -11,6 +11,14 @@ var mockServer = require('../lib/mockServer');
 
 describe('Deeply nested requests map', function() {
 
+    before('set up config object with default values', function() {
+       var config = require('../lib/config');
+        config.setConfig({
+            rulesPath: '/rules',
+            dataPath: '/data'
+        });
+    });
+
     describe('successful mock response for deeply nested request', function() {
 
        it('should get successful mock response for nested request', function() {
