@@ -42,7 +42,6 @@ describe('End to end flow test', function() {
             };
 
             var response = mockServer.getMockData(apiContext, req);
-            console.log('Response: ' + JSON.stringify(response, null, 4));
 
             assert.equal(response.customerID, '12345');
             assert.equal(response.productCode, 'abcde');
