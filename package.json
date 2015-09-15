@@ -23,5 +23,8 @@
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-mocha-cli": "^1.14.0",
     "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "debuglog": "^1.0.1"
   }
 }
