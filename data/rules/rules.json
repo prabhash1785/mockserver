@@ -41,7 +41,7 @@
                     "US"
                 ]
             },
-            "response" : "accountPreferences.json",
+            "response" : "getLoanDetailsRes1.json",
             "error" : "error.json"
         }
     ]
