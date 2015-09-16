@@ -1,6 +1,6 @@
 {
   "name": "mockapi",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple configuration based Mock server to quickly mock any kind of backend API.",
   "main": "index.js",
   "scripts": {
