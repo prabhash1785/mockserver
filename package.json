@@ -20,14 +20,14 @@
   ],
   "author": "Prabhash Rathore",
   "license": "Apache-2.0",
+  "dependencies": {
+    "debuglog": "^1.0.1"
+  },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-mocha-cli": "^1.14.0",
     "mocha": "^2.2.5"
-  },
-  "dependencies": {
-    "debuglog": "^1.0.1"
   }
 }
