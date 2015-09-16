@@ -1,5 +1,5 @@
-How to use Mock Server to mock any remote Webservice:
-------------------------------------------------------
+Mock Server:
+============
 
 This is a general purpose Mock Server which can be used to mock any kind of WebSevice. To mock any service you don't need to write any new code instead all you have to do is add a configuration in rules.json file and drop your response data under "data" directory or you can put rules.json and response data in any custom directory you want and pass these custom path in an object while instantiating mock server (sample code provided in example section below) and that will make mock server use your custom directories for looking up rules and response data.
 
@@ -9,30 +9,19 @@ Here are the detailed steps:
 
 ```
 {
-     "serviceName" : "merchantcashadvanceserv",
-     "apiName" : "getCreditDecision",
+     "serviceName" : "loanserv",
+     "apiName" : "creditDecision",
      "request" : {
          "customerID" : 12345,
-         "actorID" : 9513,
-         "industryTypeID" : 125,
-         "fundsUsageID" : 73298,
-         "yearBusinessEstablished" : 2005,
-         "contactTitleID" : 92634,
-         "businessTypeID" : 27156,
-         "dba" : "dba",
-         "ssn" : "xxx-xx-1234",
-         "ein" : "205129865",
-         "itin" : "itin27548",
          "firstName" : "Adam",
          "lastName" : "Levine",
          "accountType" : "Business",
          "homePhoneNumber" : "408-231-6219",
          "businessPhoneNumber" : "408-123-9234",
-         "businessName" : "Super Market",
          "dob" : "Aug 10, 1980",
-         "address" : "2121 N 1st St, San Jose, CA 95001"
+         "address" : "2145 Campbell St, San Jose, CA 95651"
      },
-     "response" : "creditDecisionResponse1.json",
+     "response" : "creditDecisionResponse.json",
      "error" : "error.json"
 }
 ```
@@ -86,4 +75,60 @@ var req = {
 };
 
 var response = mockServer.getMockData(apiContext, req);
+```
+
+- Use custom configuration for rules.json and response data
+```
+var MockServer = require('mockapi');
+
+var customConfiguration = {
+    rulesPath: '/myCustomRules/rules', //path where rules.json file is located. This path is relative to your project roor dir
+    dataPath: '/mydata/mockResponse' // directory path for response files relative to your package.json file
+}
+
+var mockServer = new MockServer(customConfiguration);
+
+var apiContext = {
+ serviceName: 'userDataService',
+ apiName: 'getUserData'
+};
+
+// sample request, you can have any number of attributes in your request
+var req = {
+ accountNumber : '12345',
+ city : 'Campbell',
+ country : 'US',
+ zipCode : 95008
+};
+
+var response = mockServer.getMockData(apiContext, req);
+```
+
+- Get Mock Data for Nested Request
+```
+var MockServer = require('mockapi');
+
+var mockServer = new MockServer();
+
+var apiContext = {
+ serviceName: 'userDataService',
+ apiName: 'getUserData'
+};
+
+// nested request, you can have any number of attributes in your request
+var nestedReq = {
+customerID: '83467',
+productCode: 'lfgns',
+subjects: ['English', 'Math'],
+address: {
+    street: '2121 N 1st St',
+    city : 'San Jose'
+},
+pastCountries : [
+    'India',
+    'US'
+]
+};
+
+var response = mockServer.getMockDataForNestedReq(apiContext, req);
 ```
