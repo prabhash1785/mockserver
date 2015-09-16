@@ -1,6 +1,8 @@
 Mock Server:
 ============
 
+[![Build Status](https://travis-ci.org/prabhash1785/mockserver.svg)](https://travis-ci.org/prabhash1785/mockserver)
+
 This is a general purpose Mock Server which can be used to mock any kind of WebSevice. To mock any service you don't need to write any new code instead all you have to do is add a configuration in rules.json file and drop your response data under "data" directory or you can put rules.json and response data in any custom directory you want and pass these custom path in an object while instantiating mock server (sample code provided in example section below) and that will make mock server use your custom directories for looking up rules and response data.
 
 Here are the detailed steps:
