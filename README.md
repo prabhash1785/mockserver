@@ -1,7 +1,7 @@
 How to use Mock Server to mock any remote Webservice:
 ------------------------------------------------------
 
-This is a general purpose Mock Server which can be used to mock any kind of WebSevice. To mock any service you don't need to write any new code instead all you have to do is add a configuration in rules.json file and drop your response data under "data" directory.
+This is a general purpose Mock Server which can be used to mock any kind of WebSevice. To mock any service you don't need to write any new code instead all you have to do is add a configuration in rules.json file and drop your response data under "data" directory or you can put rules.json and response data in any custom directory you want and pass these custom path in an object while instantiating mock server (sample code provided in example section below) and that will make mock server use your custom directories for looking up rules and response data.
 
 Here are the detailed steps:
 
@@ -33,38 +33,57 @@ Here are the detailed steps:
          "address" : "2121 N 1st St, San Jose, CA 95001"
      },
      "response" : "creditDecisionResponse1.json",
-     "error" : "Error.json"
+     "error" : "error.json"
 }
 ```
         
 Note:
 - Make sure your JSON is a valid json. You can verify your JSON at this link: http://jsonlint.com/
-- servicename, apiname, request, response and error are mandatory attributes.
+- servicename, apiname, request, response and error are mandatory attributes in rules.json file.
 - You can add any field under request object. It is dynamically picked by Mock Server while parsing the request.
-- Current implementation only supports flat level request objects so please make sure you don't embed nested objects        in request otherwise it will throw an exception.
 - Response object can be any valid JSON with any level of nesting inside it.
 
-2) Add your response file under mock/data directory as a JSON file.
+2) Add your JSON response file under your root level /data directory or you can have a custom directory for all your mock response. If you chosee to have custom directory then pass the path to your custom directory while instantiating mock server. See examples for reference.
 
-3) Once above two steps are done, you are ready to use the Mock Server. Use following code as reference to invoke Mock Server:
+3) Once above two steps are done, you are ready to use the Mock Server. 
 
+Mock Server exposes two APIs:
+- getMockData - This API can only be use to parse flat level requests. So if your request has no nesting which most of the REST APIs are then just use this API. This is optimized for flat level requests. This will throw error if requests are nested.
+- getMockDataForNestedReq - If your requests are nested then use this API. This API is very general purpose and it can parse nested as well as flat level requests. However if your requests are flat then I would recommend to use "getMockData" API.
+
+Use following code as reference to invoke Mock Server:
+
+- Use default configuration for rules.json and response directories.<br>
+<i>Note: 
+     - Default value of rules.json - "rules.json" file under root directory of project same as package.json
+     - Default value of response data directory - "data" directory under root of project same as package.json
+</i>
+<br>
+<b>Examples:</b>
+
+- Use deault configuration
 ```
-var mockServer = require('../lib/MockServer'); //use your relative directory while doing a require
-var request = {
-  serviceName : "merchantcashadvanceserv",
-  apiName : "getLoanDetails",
-  .
-  .
-  .
-  any other request object attributes
-  .
-  .
-  .
-}
-var response = mockServer.getMockData(request);
+var MockServer = require('mockapi');
+
+/* No configuration provided while instantiations means default configuration will be used
+ * Default configuration:
+ * rules.json must be available under root of project same as package.json
+ * Mock response json files must be available under "data" durectory of project root same as package.json
+ */
+var mockServer = new MockServer();
+
+var apiContext = {
+ serviceName: 'userDataService',
+ apiName: 'getUserData'
+};
+
+// sample request, you can have any number of attributes in your request
+var req = {
+ accountNumber : '12345',
+ city : 'Campbell',
+ country : 'US',
+ zipCode : 95008
+};
+
+var response = mockServer.getMockData(apiContext, req);
 ```
-  
-
-
-**More sample client codes are available under mock/client directory.**
- 
