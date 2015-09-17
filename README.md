@@ -7,24 +7,28 @@ This is a general purpose Mock Server which can be used to mock any kind of WebS
 
 Here are the detailed steps:
 
-1) Add a similar json block in rules.json file.
+1) Add a similar json block in rules.json file. Here "api" is an array and it can have n number of objects each representing a service request configuration. This is the file which is parsed to find right response or error depending upon configuration.
 
 ```
 {
-     "serviceName" : "loanserv",
-     "apiName" : "creditDecision",
-     "request" : {
-         "customerID" : 12345,
-         "firstName" : "Adam",
-         "lastName" : "Levine",
-         "accountType" : "Business",
-         "homePhoneNumber" : "408-231-6219",
-         "businessPhoneNumber" : "408-123-9234",
-         "dob" : "Aug 10, 1980",
-         "address" : "2145 Campbell St, San Jose, CA 95651"
-     },
-     "response" : "creditDecisionResponse.json",
-     "error" : "error.json"
+     "api": [
+          {
+               "serviceName" : "loanserv",
+               "apiName" : "creditDecision",
+               "request" : {
+                   "customerID" : 12345,
+                   "firstName" : "Adam",
+                   "lastName" : "Levine",
+                   "accountType" : "Business",
+                   "homePhoneNumber" : "408-231-6219",
+                   "businessPhoneNumber" : "408-123-9234",
+                   "dob" : "Aug 10, 1980",
+                   "address" : "2145 Campbell St, San Jose, CA 95651"
+               },
+               "response" : "creditDecisionResponse.json",
+               "error" : "error.json"
+          }
+     ]
 }
 ```
         
