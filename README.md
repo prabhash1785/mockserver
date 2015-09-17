@@ -42,9 +42,9 @@ Note:
 
 3) Once above two steps are done, you are ready to use the Mock Server. 
 
-Mock Server exposes two APIs:
-- getMockData - This API can only be use to parse flat level requests. So if your request has no nesting which most of the REST APIs are then just use this API. This is optimized for flat level requests. This will throw error if requests are nested.
-- getMockDataForNestedReq - If your requests are nested then use this API. This API is very general purpose and it can parse nested as well as flat level requests. However if your requests are flat then I would recommend to use "getMockData" API.
+<b>Mock Server API exposes two functions:</b>
+- ```getMockData``` - This API can only be use to parse flat level requests. So if your request has no nesting which most of the REST APIs are then just use this API. This is optimized for flat level requests. This will throw error if requests are nested.
+- ```getMockDataForNestedReq``` - If your requests are nested then use this API. This API is very general purpose and it can parse nested as well as flat level requests. However if your requests are flat then I would recommend to use "getMockData" API.
 
 Use following code as reference to invoke Mock Server:
 
