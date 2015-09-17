@@ -4,7 +4,7 @@
   "description": "Simple configuration based Mock server to quickly mock any kind of backend API.",
   "main": "index.js",
   "scripts": {
-    "test": "grunt lint"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",
