@@ -48,11 +48,12 @@ Note:
 
 Use following code as reference to invoke Mock Server:
 
-- Use default configuration for rules.json and response directories.<br>
+- Use default configuration for rules.json and response directories.<br><br>
 <i>Note: 
      - Default value of rules.json - "rules.json" file under root directory of project same as package.json
      - Default value of response data directory - "data" directory under root of project same as package.json
 </i>
+
 <br>
 <b>Examples:</b>
 
